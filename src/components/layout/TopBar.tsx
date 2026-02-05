@@ -283,7 +283,21 @@ export const TopBar = () => {
             </p>
           </div>
         ) : (
-          <ModalKpForm onSubmit={() => {}} />
+          <ModalKpForm onSubmit={(type: 'factory' | 'partners') => {
+              if (type == 'factory') {
+                let emailTo = "info@zvezdafabrika.ru"
+                let emailCC = ''
+                let emailSub = ''
+                let emailBody = ''
+                location.href = "mailto:"+emailTo+'?cc='+emailCC+'&subject='+emailSub+'&body='+emailBody;
+              } else {
+                let emailTo = "info@zvezdafabrika.ru"
+                let emailCC = 'kerala2018@mail.ru,politon_td@mail.ru'
+                let emailSub = ''
+                let emailBody = ''
+                location.href = "mailto:"+emailTo+'?cc='+emailCC+'&subject='+emailSub+'&body='+emailBody;
+              }
+          }} />
         )}
       </ModalKp>
     </>
