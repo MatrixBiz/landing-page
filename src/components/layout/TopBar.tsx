@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useModalKp } from '../../hooks/useModalKp';
 import { ModalKp } from '../modal/modalKp';
-import { ModalKpForm } from '../modal/modalKpForm.tsx';
+import { ModalKpForm } from '../modal/modalKpForm';
 
 interface DropdownItem {
   id: string;
@@ -14,78 +14,49 @@ interface DropdownItem {
 
 export const TopBar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const customersRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const kpModal = useModalKp();
-  const [kpSubmitSuccess, setKpSubmitSuccess] = useState(false);
+  const [kpSubmitSuccess] = useState(false);
 
   const customersItems: DropdownItem[] = [
-    { 
-      id: 'catalog', 
-      label: 'Каталог товаров', 
+    {
+      id: 'catalog',
+      label: 'Каталог товаров',
       href: 'https://docs.google.com/spreadsheets/d/1IOjysSANR1_s6ibpwOSmrmzdq-xpP8QlJhVlrBT8GIg/edit?usp=sharing',
-      isExternal: true
+      isExternal: true,
     },
-    { 
-      id: 'request', 
-      label: 'Запросить КП', 
+    {
+      id: 'request',
+      label: 'Запросить КП',
       onClick: () => {
         setActiveDropdown(null);
+        setIsMobileMenuOpen(false);
         kpModal.open();
       },
-      isExternal: false
     },
-    { 
-      id: 'contacts', 
-      label: 'Контакты', 
+    {
+      id: 'contacts',
+      label: 'Контакты',
       href: '/contacts',
-      isExternal: false
     },
-    { 
-      id: 'payment', 
-      label: 'Оплата и доставка', 
+    {
+      id: 'payment',
+      label: 'Оплата и доставка',
       href: '/payment-delivery',
-      isExternal: false
     },
   ];
 
-  const handleKpSubmit = async (type: 'factory' | 'partners') => {
-    if (type === 'factory') {
-      const subject = encodeURIComponent('Запрос КП от завода');
-      const body = encodeURIComponent('Здравствуйте!\n\n\n\nС уважением,');
-      const mailto = `mailto:info@zvezdafabrika.ru?subject=${subject}&body=${body}`;
-      window.location.href = mailto;
-    } else {
-      const subject = encodeURIComponent('Запрос КП от завода и партнеров');
-      const body = encodeURIComponent('Здравствуйте!\n\n\n\nС уважением,');
-      const emails = 'info@zvezdafabrika.ru,kerala2018@mail.ru,politon_td@mail.ru';
-      const mailto = `mailto:${emails}?subject=${subject}&body=${body}&cc=kerala2018@mail.ru,politon_td@mail.ru`;
-      window.location.href = mailto;
-    }
-
-    setKpSubmitSuccess(true);
-    setTimeout(() => {
-      kpModal.close();
-      setKpSubmitSuccess(false);
-    }, 2000);
-  };
-
-  const handleMouseEnter = (dropdown: string) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setActiveDropdown(dropdown);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 500);
-  };
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (customersRef.current && !customersRef.current.contains(event.target as Node)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setActiveDropdown(null);
+      }
+
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
       }
     };
 
@@ -93,140 +64,226 @@ export const TopBar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleItemClick = () => {
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleCustomersMouseEnter = () => {
+    setActiveDropdown('customers');
+  };
+
+  const handleDropdownMouseLeave = () => {
     setTimeout(() => {
-      setActiveDropdown(null);
+      if (dropdownRef.current && !dropdownRef.current.matches(':hover')) {
+        setActiveDropdown(null);
+      }
     }, 100);
   };
 
-  const renderDropdown = (items: DropdownItem[], dropdownName: string) => {
-    return (
-      <div 
-        className="absolute top-full z-40 overflow-hidden"
-        style={{ 
-          left: '50%',
-          transform: 'translateX(-50%)',
-          minWidth: '280px'
-        }}
-        onMouseEnter={() => handleMouseEnter(dropdownName)}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className="bg-white rounded-lg shadow-lg border border-gray-200 mt-2">
-          <div className="py-3 px-6">
-            {items.map((item) => {
-              if (item.onClick) {
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      item.onClick?.();
-                      handleItemClick();
-                    }}
-                    className="block w-full text-left py-3 text-[#2A2720] hover:text-[#E30613] hover:underline transition-colors duration-150 text-[24px] font-bold whitespace-nowrap"
-                  >
-                    {item.label}
-                  </button>
-                );
-              }
-              
-              if (item.isExternal) {
-                return (
-                  <a
-                    key={item.id}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block py-3 text-[#2A2720] hover:text-[#E30613] hover:underline transition-colors duration-150 text-[24px] font-bold whitespace-nowrap"
-                    onClick={() => handleItemClick()}
-                  >
-                    {item.label}
-                  </a>
-                );
-              }
-              
+  const renderDesktopDropdown = (items: DropdownItem[]) => (
+    <div 
+      className="absolute top-full left-1/2 -translate-x-1/2 z-40 mt-3 min-w-[280px]"
+      onMouseEnter={() => setActiveDropdown('customers')}
+      onMouseLeave={() => setActiveDropdown(null)}
+    >
+      <div className="bg-white rounded-xl shadow-lg border border-gray-200">
+        <div className="py-3 px-6">
+          {items.map((item) => {
+            const baseClass =
+              'block py-3 text-base lg:text-lg xl:text-[22px] font-bold text-[#2A2720] hover:text-[#E30613] hover:underline transition';
+
+            if (item.onClick) {
               return (
-                <Link
+                <button
                   key={item.id}
-                  to={item.href || '#'}
-                  className="block py-3 text-[#2A2720] hover:text-[#E30613] hover:underline transition-colors duration-150 text-[24px] font-bold whitespace-nowrap"
-                  onClick={() => handleItemClick()}
+                  onClick={item.onClick}
+                  className={`${baseClass} text-left w-full`}
                 >
                   {item.label}
-                </Link>
+                </button>
               );
-            })}
-          </div>
+            }
+
+            if (item.isExternal) {
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={baseClass}
+                >
+                  {item.label}
+                </a>
+              );
+            }
+
+            return (
+              <Link key={item.id} to={item.href || '#'} className={baseClass}>
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
-    );
-  };
+    </div>
+  );
 
   return (
     <>
-      <div className="absolute top-[100px] right-100 w-1/2 h-16 z-30 flex items-center justify-center">
-        <div className="w-full flex items-center justify-between">
-          <div className="w-1/4"></div>
-
-          <div className="flex-1 flex items-center justify-around gap-20">
-            <div 
-              className="relative" 
-              ref={customersRef}
-              onMouseEnter={() => handleMouseEnter('customers')}
-              onMouseLeave={handleMouseLeave}
+      {/* Мобильная версия */}
+      <div className="sm:hidden">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1">
+            <img
+              src="assets/svg/phone-icon.svg"
+              className="w-4 h-4"
+              alt="Телефон"
+            />
+            <a
+              href="tel:88001012258"
+              className="text-sm font-bold text-[#2A2720] hover:text-[#E30613] transition whitespace-nowrap"
             >
-              <button
-                className="text-[#2A2720] hover:text-[#E30613] transition-colors duration-200 text-[30px] font-bold whitespace-nowrap"
-              >
-                Для заказчиков
-              </button>
+              8 (800) 101 22 58
+            </a>
+          </div>
 
-              {activeDropdown === 'customers' && renderDropdown(customersItems, 'customers')}
-            </div>
+          <button
+            onClick={toggleMobileMenu}
+            className="text-sm font-bold text-[#2A2720] hover:text-[#E30613] transition px-3 py-1 rounded-lg border border-gray-300"
+          >
+            {isMobileMenuOpen ? '✕' : '☰'}
+          </button>
+        </div>
 
-            <Link
-              to="/dealers"
-              className="text-[#2A2720] hover:text-[#E30613] transition-colors duration-200 text-[30px] font-bold whitespace-nowrap"
-            >
-              Для дилеров
-            </Link>
+        {/* Выпадающее мобильное меню */}
+        {isMobileMenuOpen && (
+          <div ref={mobileMenuRef} className="absolute left-0 right-0 top-full z-40 bg-white shadow-lg border-t border-gray-200">
+            <div className="py-4 px-6">
+              <div className="mb-4">
+                <div className="text-lg font-bold text-[#E30613] mb-3">Для заказчиков</div>
+                <div className="space-y-3">
+                  {customersItems.map((item) => {
+                    const baseClass = 'block py-2 text-base font-bold text-[#2A2720] hover:text-[#E30613] hover:underline transition';
 
-            <div className="flex items-center gap-6 ">
-              <a 
-                href="tel:+79375861212" 
-                className="text-[#2A2720] hover:text-[#E30613] transition-colors duration-200 text-[30px] font-bold whitespace-nowrap"
-              >
-                📞 +7 (937) 586-12-12
-              </a>
+                    if (item.onClick) {
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={item.onClick}
+                          className={`${baseClass} text-left w-full`}
+                        >
+                          {item.label}
+                        </button>
+                      );
+                    }
+
+                    if (item.isExternal) {
+                      return (
+                        <a
+                          key={item.id}
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={baseClass}
+                        >
+                          {item.label}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <Link
+                        key={item.id}
+                        to={item.href || '#'}
+                        className={baseClass}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <div className="text-lg font-bold text-[#E30613] mb-3">Для дилеров</div>
+                <Link
+                  to="/dealers"
+                  className="text-base font-bold text-[#2A2720] hover:text-[#E30613] hover:underline transition block py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Информация для дилеров
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="w-1/4"></div>
+        )}
+      </div>
+
+      {/* Десктоп версия */}
+      <div className="hidden sm:flex items-center gap-3 md:gap-4 lg:gap-8 xl:gap-16">
+        <div
+          className="relative"
+          ref={dropdownRef}
+          onMouseEnter={handleCustomersMouseEnter}
+          onMouseLeave={handleDropdownMouseLeave}
+        >
+          <button className="
+            text-base font-bold text-[#2A2720] hover:text-[#E30613] transition whitespace-nowrap
+            md:text-lg
+            lg:text-xl
+            xl:text-[30px]
+            pt-1
+          ">
+            Для заказчиков
+          </button>
+          {activeDropdown === 'customers' && renderDesktopDropdown(customersItems)}
+        </div>
+
+        <Link
+          to="/dealers"
+          className="
+            text-base font-bold text-[#2A2720] hover:text-[#E30613] transition whitespace-nowrap
+            md:text-lg
+            lg:text-xl
+            xl:text-[30px]
+            pt-1
+          "
+        >
+          Для дилеров
+        </Link>
+
+        <div className="flex items-center gap-1 md:gap-2 xl:gap-3 pt-1">
+          <a
+            href="tel:+79375861212"
+            className="
+              text-sm font-bold text-[#2A2720] hover:text-[#E30613] transition whitespace-nowrap
+              md:text-base
+              lg:text-lg
+              xl:text-[30px]
+            "
+          >
+            📞 +7 (937) 586-12-12
+          </a>
         </div>
       </div>
 
-      <ModalKp
-        isOpen={kpModal.isOpen}
-        onClose={kpModal.close}
-        title="ЗАПРОСИТЬ КП"
-      >
+      <ModalKp isOpen={kpModal.isOpen} onClose={kpModal.close} title="ЗАПРОСИТЬ КП">
         {kpSubmitSuccess ? (
           <div className="flex flex-col items-center justify-center h-full">
-            <div className="w-24 h-24 bg-green-100 rounded-full flex items-center 
-                          justify-center mb-6">
-              <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" 
-                   viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} 
-                      d="M5 13l4 4L19 7" />
+            <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6">
+              <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Запрос отправлен!
-            </h3>
+            <h3 className="text-3xl font-bold mb-4">Запрос отправлен!</h3>
             <p className="text-xl text-gray-600 text-center">
-              Откроется почтовый клиент для отправки
+              Откроется почтовый клиент
             </p>
           </div>
         ) : (
-          <ModalKpForm onSubmit={handleKpSubmit} />
+          <ModalKpForm onSubmit={() => {}} />
         )}
       </ModalKp>
     </>

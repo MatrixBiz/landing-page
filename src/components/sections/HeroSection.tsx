@@ -6,80 +6,81 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ onOpenModal }: HeroSectionProps) => {
   return (
-    <div className="relative min-h-screen w-full">
-      <div 
-        className="absolute bottom-8 md:bottom-[245px] left-4 md:left-[106px] z-20"
-        style={{ 
-          maxWidth: 'calc(100% - 32px)'
-        }}
+    <section className="w-full flex items-end md:items-center h-auto pt-24 md:pt-32">
+      <div
+        className="
+          w-full
+          max-w-[1440px]  
+          mx-auto         
+          px-4
+          pb-4            
+        "
       >
-        <div 
-          className="mb-4 md:mb-[37px]"
-        >
-          <h1 
-            className="font-bold leading-tight"
-            style={{ 
-              fontSize: 'clamp(32px, 8vw, 60px)',
-              lineHeight: '1.1',
-              color: '#2A2720',
-              fontWeight: 700,
-              fontStyle: 'normal',
-              letterSpacing: '0%'
-            }}
-          >
-            Картриджи <br />
-            от производителя
-          </h1>
-        </div>
+        <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-12">
 
-        <button
-          onClick={onOpenModal}
-          style={{
-            width: 'min(304px, 100%)',
-            height: 'clamp(60px, 10vw, 87px)',
-            backgroundColor: '#E30613',
-            fontWeight: 700,
-            fontFamily: 'Manrope, sans-serif'
-          }}
-          className="hover:bg-red-700 active:bg-red-800 
-                   text-white font-bold rounded-[45px] 
-                   shadow-xl hover:shadow-2xl 
-                   transform hover:-translate-y-1 active:translate-y-0
-                   transition-all duration-300"
-        >
-          <span style={{ fontSize: 'clamp(18px, 3vw, 24px)', fontWeight: 700 }}>
-            быстрая заявка
-          </span>
-        </button>
-      </div>
+          <div className="max-w-2xl z-20">
+            <h1
+              className="font-bold text-[#2A2720] leading-tight mb-4 md:mb-6"
+              style={{ 
+                fontSize: 'clamp(32px, 8vw, 60px)',
+                lineHeight: '1.1'
+              }}
+            >
+              <span className="whitespace-nowrap">Картриджи</span>
+              <span className="block whitespace-nowrap">
+                от производителя
+              </span>
+            </h1>
 
-      <div 
-        className="absolute right-0 bottom-[120px] z-10"
-        style={{ 
-          width: 'min(1023px, 70vw)',
-          height: 'calc(min(443px, 60vh) - 30px)', 
-          maxWidth: '1023px'
-        }}
-      >
-        <div 
-          className="w-full h-full rounded-tl-[41px] overflow-hidden relative"
-          style={{ 
-            borderRadius: '41px 0 0 0',
-            backgroundColor: '#E30613'
-          }}
-        >
-          <img 
-            src={boxesImage} 
-            alt="Картриджи" 
-            className="w-full absolute"
-            style={{ 
-              height: '405px', 
-              bottom: '0',
-              objectFit: 'cover'
-            }}
-          />
+            <button
+              onClick={onOpenModal}
+              className="
+                w-full
+                max-w-[350px]
+                h-[60px]
+                md:h-[87px]
+                bg-[#E30613]
+                text-white
+                font-bold
+                rounded-[45px]
+                shadow-xl
+                hover:bg-red-700
+                hover:shadow-2xl
+                transform
+                hover:-translate-y-1
+                transition-all
+                duration-300
+              "
+            >
+              <span
+                style={{
+                  fontSize: 'clamp(18px, 3vw, 24px)',
+                  fontFamily: 'Manrope, sans-serif',
+                }}
+              >
+                быстрая заявка
+              </span>
+            </button>
+          </div>
+
+          <div className="relative w-full md:w-[65%] max-w-[1023px] h-[260px] md:h-[443px] z-10">
+            <div
+              className="w-full h-full overflow-hidden"
+              style={{
+                borderRadius: '41px 0 0 0',
+                backgroundColor: '#E30613',
+              }}
+            >
+              <img
+                src={boxesImage}
+                alt="Картриджи"
+                className="absolute bottom-0 w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };
