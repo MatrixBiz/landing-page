@@ -1,4 +1,3 @@
-// src/app/router.tsx
 import { createBrowserRouter } from 'react-router-dom';
 import Root from './root';
 import LandingPage from '../routes/_app/index';
@@ -13,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LandingPage />, // Главная страница
+        element: <LandingPage />,
       },
       {
         path: 'contacts',
@@ -24,7 +23,7 @@ export const router = createBrowserRouter([
         element: <PaymentDeliveryPage />,
       },
       {
-        path: 'dealers', // Новый маршрут
+        path: 'dealers',
         element: <DealersPage />,
       },
     ],

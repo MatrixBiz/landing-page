@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useModalKp } from '../../hooks/useModalKp';
-import PhoneIcon from '../../../public/assets/svg/phone-icon.svg?react';
-import { ModalKp } from '../modal/ModalKP';
+import { ModalKp } from '../modal/modalKp';
 import { ModalKpForm } from '../modal/modalKpForm.tsx';
 
 interface DropdownItem {
@@ -16,7 +15,7 @@ interface DropdownItem {
 export const TopBar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const customersRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const kpModal = useModalKp();
   const [kpSubmitSuccess, setKpSubmitSuccess] = useState(false);
@@ -94,13 +93,13 @@ export const TopBar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleItemClick = (item: DropdownItem) => {
+  const handleItemClick = () => {
     setTimeout(() => {
       setActiveDropdown(null);
     }, 100);
   };
 
-  const renderDropdown = (items: DropdownItem[], dropdownName: string, buttonRef: React.RefObject<HTMLDivElement>) => {
+  const renderDropdown = (items: DropdownItem[], dropdownName: string) => {
     return (
       <div 
         className="absolute top-full z-40 overflow-hidden"
@@ -121,7 +120,7 @@ export const TopBar = () => {
                     key={item.id}
                     onClick={() => {
                       item.onClick?.();
-                      handleItemClick(item);
+                      handleItemClick();
                     }}
                     className="block w-full text-left py-3 text-[#2A2720] hover:text-[#E30613] hover:underline transition-colors duration-150 text-[24px] font-bold whitespace-nowrap"
                   >
@@ -138,7 +137,7 @@ export const TopBar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block py-3 text-[#2A2720] hover:text-[#E30613] hover:underline transition-colors duration-150 text-[24px] font-bold whitespace-nowrap"
-                    onClick={() => handleItemClick(item)}
+                    onClick={() => handleItemClick()}
                   >
                     {item.label}
                   </a>
@@ -150,7 +149,7 @@ export const TopBar = () => {
                   key={item.id}
                   to={item.href || '#'}
                   className="block py-3 text-[#2A2720] hover:text-[#E30613] hover:underline transition-colors duration-150 text-[24px] font-bold whitespace-nowrap"
-                  onClick={() => handleItemClick(item)}
+                  onClick={() => handleItemClick()}
                 >
                   {item.label}
                 </Link>
@@ -181,7 +180,7 @@ export const TopBar = () => {
                 Для заказчиков
               </button>
 
-              {activeDropdown === 'customers' && renderDropdown(customersItems, 'customers', customersRef)}
+              {activeDropdown === 'customers' && renderDropdown(customersItems, 'customers')}
             </div>
 
             <Link
@@ -192,15 +191,11 @@ export const TopBar = () => {
             </Link>
 
             <div className="flex items-center gap-6 ">
-              <PhoneIcon 
-                className="text-[#2A2720] hover:text-[#E30613] transition-colors duration-200"
-                style={{ width: '25px', height: '20px' }}
-              />
               <a 
                 href="tel:+79375861212" 
                 className="text-[#2A2720] hover:text-[#E30613] transition-colors duration-200 text-[30px] font-bold whitespace-nowrap"
               >
-                T.: +7 (937) 586-12-12
+                📞 +7 (937) 586-12-12
               </a>
             </div>
           </div>

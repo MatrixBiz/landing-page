@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Logo from '../../../public/assets/svg/logo.svg?react';
+
 
 export const Header = () => {
   return (
@@ -7,7 +7,9 @@ export const Header = () => {
       <div className="flex flex-col items-center">
 
         <Link to="/" className="mb-2 md:mb-0 block hover:opacity-90 transition-opacity">
-          <Logo 
+          <img 
+            src="assets/svg/logo.svg"
+            alt='Логотип Фабрика Звезда'
             className="w-48 md:w-[282.62px] h-auto cursor-pointer"
             style={{
               height: 'auto',
