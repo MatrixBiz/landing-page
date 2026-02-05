@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --font-family-sans: 'Manrope', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: #DADADC;
+  margin: 0 auto;
+  padding: 0;
+  overflow: auto;
+}
+
+/* Стили для страницы контактов */
+.contacts-heading {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 30px;
+  line-height: 60px;
+  letter-spacing: 0%;
+  color: #2A2720;
+}
+
+.contacts-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  line-height: 60px;
+  letter-spacing: 0%;
+  color: #2A2720;
+}
+
+.contacts-heading-link {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 30px;
+  line-height: 60px;
+  letter-spacing: 0%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.quality-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: #2A2720;
+}
+
+.contacts-heading strong {
+  font-weight: 700;
+}
+
+.contacts-heading span {
+  font-size: 30px;
+  line-height: 60px;
+}
+
+@media (max-width: 1024px) {
+  .container-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-padding {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
