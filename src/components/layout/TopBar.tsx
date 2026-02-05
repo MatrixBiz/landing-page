@@ -197,10 +197,10 @@ export const TopBar = () => {
                 style={{ width: '25px', height: '20px' }}
               />
               <a 
-                href="tel:88001012258" 
+                href="tel:+79375861212" 
                 className="text-[#2A2720] hover:text-[#E30613] transition-colors duration-200 text-[30px] font-bold whitespace-nowrap"
               >
-                T.: 8 (800) 101 22 58
+                T.: +7 (937) 586-12-12
               </a>
             </div>
           </div>
