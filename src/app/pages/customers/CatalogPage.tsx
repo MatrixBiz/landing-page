@@ -5,10 +5,14 @@ import { catalogProducts } from "../../data/catalogProducts";
 
 export function CatalogPage() {
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState<string>("all");
+    const [selectedManufacturer, setSelectedManufacturer] =
+        useState<string>("all");
     const { addToCart } = useCart();
-    const categoryOptions = useMemo(
-        () => [...new Set(catalogProducts.map((product) => product.category))],
+    const manufacturerOptions = useMemo(
+        () =>
+            [...new Set(catalogProducts.map((product) => product.manufacturer))]
+                .filter(Boolean)
+                .sort((a, b) => a.localeCompare(b, "ru")),
         [],
     );
 
@@ -23,10 +27,11 @@ export function CatalogPage() {
                 .toLowerCase()
                 .includes(searchQuery.toLowerCase());
 
-        const matchesCategory =
-            selectedCategory === "all" || product.category === selectedCategory;
+        const matchesManufacturer =
+            selectedManufacturer === "all" ||
+            product.manufacturer === selectedManufacturer;
 
-        return matchesSearch && matchesCategory;
+        return matchesSearch && matchesManufacturer;
     });
 
     return (
@@ -82,31 +87,22 @@ export function CatalogPage() {
                             />
                         </div>
 
-                        {/* Category Filter */}
-                        <div className="flex gap-2 flex-wrap">
-                            <button
-                                onClick={() => setSelectedCategory("all")}
-                                className={`px-4 py-2 rounded-lg transition-colors ${
-                                    selectedCategory === "all"
-                                        ? "bg-red-600 text-white"
-                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                }`}
+                        {/* Manufacturer Filter */}
+                        <div className="md:w-72">
+                            <select
+                                value={selectedManufacturer}
+                                onChange={(e) =>
+                                    setSelectedManufacturer(e.target.value)
+                                }
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-red-600 focus:border-transparent"
                             >
-                                Все
-                            </button>
-                            {categoryOptions.map((category) => (
-                                <button
-                                    key={category}
-                                    onClick={() => setSelectedCategory(category)}
-                                    className={`px-4 py-2 rounded-lg transition-colors ${
-                                        selectedCategory === category
-                                            ? "bg-red-600 text-white"
-                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    }`}
-                                >
-                                    {category}
-                                </button>
-                            ))}
+                                <option value="all">Все производители</option>
+                                {manufacturerOptions.map((manufacturer) => (
+                                    <option key={manufacturer} value={manufacturer}>
+                                        {manufacturer}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -128,11 +124,8 @@ export function CatalogPage() {
                                 />
                             </div>
 
-                            <div className="mb-2 flex items-center justify-between gap-2">
-                                <span className="text-xs text-red-600 font-semibold">
-                                    {product.category}
-                                </span>
-                                <span className="text-xs text-gray-600 font-medium truncate">
+                            <div className="mb-2">
+                                <span className="text-xs text-gray-600 font-medium">
                                     {product.manufacturer}
                                 </span>
                             </div>
