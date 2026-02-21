@@ -114,23 +114,23 @@ export function CatalogPage() {
                     {filteredProducts.map((product) => (
                         <div
                             key={product.id}
-                            className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow"
+                            className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow flex flex-col"
                         >
-                            <div className="aspect-square bg-gray-50 rounded-lg mb-4 flex items-center justify-center">
-                                <img
-                                    src="https://images.unsplash.com/photo-1723672947453-e6d09052bdf3?w=300"
-                                    alt={product.name}
-                                    className="w-32 h-32 object-contain"
-                                />
-                            </div>
-
                             <div className="mb-2">
                                 <span className="text-xs text-gray-600 font-medium">
                                     {product.manufacturer}
                                 </span>
                             </div>
 
-                            <h3 className="font-semibold text-gray-900 mb-1">
+                            <h3
+                                className="font-semibold text-gray-900 mb-1 break-words"
+                                style={{
+                                    display: "-webkit-box",
+                                    WebkitLineClamp: 3,
+                                    WebkitBoxOrient: "vertical",
+                                    overflow: "hidden",
+                                }}
+                            >
                                 {product.name}
                             </h3>
                             <p className="text-sm text-gray-600 mb-1">
