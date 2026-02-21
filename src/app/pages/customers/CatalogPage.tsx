@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Search, ShoppingCart } from "lucide-react";
+import { Minus, Plus, Search, ShoppingCart } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import { catalogProducts } from "../../data/catalogProducts";
 
@@ -11,13 +11,17 @@ export function CatalogPage() {
         useState<string>("all");
     const [visibleCount, setVisibleCount] = useState(PRODUCTS_BATCH_SIZE);
     const loadMoreRef = useRef<HTMLDivElement | null>(null);
-    const { addToCart } = useCart();
+    const { addToCart, items, updateQuantity } = useCart();
     const manufacturerOptions = useMemo(
         () =>
             [...new Set(catalogProducts.map((product) => product.manufacturer))]
                 .filter(Boolean)
                 .sort((a, b) => a.localeCompare(b, "ru")),
         [],
+    );
+    const quantityById = useMemo(
+        () => new Map(items.map((item) => [item.id, item.quantity])),
+        [items],
     );
 
     const filteredProducts = catalogProducts.filter((product) => {
@@ -69,6 +73,10 @@ export function CatalogPage() {
         observer.observe(target);
         return () => observer.disconnect();
     }, [filteredProducts.length, hasMoreProducts]);
+
+    const handleAddToCart = (product: (typeof catalogProducts)[number]) => {
+        addToCart(product);
+    };
 
     return (
         <div className="min-h-screen">
@@ -131,11 +139,13 @@ export function CatalogPage() {
             {/* Products Grid */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {visibleProducts.map((product) => (
-                        <div
-                            key={product.id}
-                            className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow flex flex-col"
-                        >
+                    {visibleProducts.map((product) => {
+                        const addedQuantity = quantityById.get(product.id) ?? 0;
+                        return (
+                            <div
+                                key={product.id}
+                                className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow flex flex-col"
+                            >
                             <div className="mb-2">
                                 <span className="text-xs text-gray-600 font-medium">
                                     {product.manufacturer}
@@ -165,22 +175,55 @@ export function CatalogPage() {
                                 </p>
                             )}
 
-                            <div className="flex items-center justify-between">
+                            <div className="mt-auto flex items-center justify-between">
                                 <div>
                                     <span className="text-lg font-semibold text-red-600">
                                         Цена по запросу
                                     </span>
                                 </div>
-                                <button
-                                    onClick={() => addToCart(product)}
-                                    className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                                    title="Добавить в корзину"
-                                >
-                                    <ShoppingCart className="w-5 h-5" />
-                                </button>
+                                {addedQuantity > 0 ? (
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() =>
+                                                updateQuantity(
+                                                    product.id,
+                                                    addedQuantity - 1,
+                                                )
+                                            }
+                                            className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                            title="Уменьшить количество"
+                                        >
+                                            <Minus className="w-4 h-4" />
+                                        </button>
+                                        <span className="w-8 text-center font-semibold text-gray-900">
+                                            {addedQuantity}
+                                        </span>
+                                        <button
+                                            onClick={() =>
+                                                updateQuantity(
+                                                    product.id,
+                                                    addedQuantity + 1,
+                                                )
+                                            }
+                                            className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                            title="Увеличить количество"
+                                        >
+                                            <Plus className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={() => handleAddToCart(product)}
+                                        className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                                        title="Добавить в корзину"
+                                    >
+                                        <ShoppingCart className="w-5 h-5" />
+                                    </button>
+                                )}
                             </div>
-                        </div>
-                    ))}
+                            </div>
+                        );
+                    })}
                 </div>
                 {hasMoreProducts && (
                     <div className="pt-8 pb-2 text-center">
