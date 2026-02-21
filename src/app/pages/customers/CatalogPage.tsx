@@ -1,12 +1,16 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Search, ShoppingCart } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import { catalogProducts } from "../../data/catalogProducts";
+
+const PRODUCTS_BATCH_SIZE = 48;
 
 export function CatalogPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedManufacturer, setSelectedManufacturer] =
         useState<string>("all");
+    const [visibleCount, setVisibleCount] = useState(PRODUCTS_BATCH_SIZE);
+    const loadMoreRef = useRef<HTMLDivElement | null>(null);
     const { addToCart } = useCart();
     const manufacturerOptions = useMemo(
         () =>
@@ -33,6 +37,35 @@ export function CatalogPage() {
 
         return matchesSearch && matchesManufacturer;
     });
+    const visibleProducts = filteredProducts.slice(0, visibleCount);
+    const hasMoreProducts = visibleCount < filteredProducts.length;
+
+    useEffect(() => {
+        setVisibleCount(PRODUCTS_BATCH_SIZE);
+    }, [searchQuery, selectedManufacturer]);
+
+    useEffect(() => {
+        const target = loadMoreRef.current;
+        if (!target || !hasMoreProducts) {
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const [entry] = entries;
+                if (!entry?.isIntersecting) {
+                    return;
+                }
+                setVisibleCount((prev) =>
+                    Math.min(prev + PRODUCTS_BATCH_SIZE, filteredProducts.length),
+                );
+            },
+            { rootMargin: "300px 0px" },
+        );
+
+        observer.observe(target);
+        return () => observer.disconnect();
+    }, [filteredProducts.length, hasMoreProducts]);
 
     return (
         <div className="min-h-screen">
@@ -111,7 +144,7 @@ export function CatalogPage() {
             {/* Products Grid */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {filteredProducts.map((product) => (
+                    {visibleProducts.map((product) => (
                         <div
                             key={product.id}
                             className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow flex flex-col"
@@ -162,6 +195,14 @@ export function CatalogPage() {
                         </div>
                     ))}
                 </div>
+                {hasMoreProducts && (
+                    <div className="pt-8 pb-2 text-center">
+                        <div ref={loadMoreRef} className="h-8" />
+                        <p className="text-sm text-gray-500">
+                            Загружаем еще товары...
+                        </p>
+                    </div>
+                )}
 
                 {filteredProducts.length === 0 && (
                     <div className="text-center py-12">
