@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 export interface CartItem {
     id: string;
@@ -22,7 +22,21 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-    const [items, setItems] = useState<CartItem[]>([]);
+    const [items, setItems] = useState<CartItem[]>(() => {
+        if (typeof window === "undefined") {
+            return [];
+        }
+        try {
+            const saved = window.sessionStorage.getItem("cart_items");
+            if (!saved) {
+                return [];
+            }
+            const parsed = JSON.parse(saved) as CartItem[];
+            return Array.isArray(parsed) ? parsed : [];
+        } catch {
+            return [];
+        }
+    });
 
     const addToCart = (item: Omit<CartItem, "quantity">) => {
         setItems((prev) => {
@@ -61,6 +75,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const getTotalItems = () => {
         return items.reduce((sum, item) => sum + item.quantity, 0);
     };
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            window.sessionStorage.setItem("cart_items", JSON.stringify(items));
+        }
+    }, [items]);
 
     return (
         <CartContext.Provider

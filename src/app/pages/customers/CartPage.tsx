@@ -22,6 +22,7 @@ ${itemsList}
 С уважением,`;
 
         window.location.href = `mailto:info@fabrikazvezda.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        clearCart();
     };
 
     const handleRequestQuote = () => {
@@ -39,6 +40,7 @@ ${itemsList}
 С уважением,`;
 
         window.location.href = `mailto:info@fabrikazvezda.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        clearCart();
     };
 
     if (items.length === 0) {
