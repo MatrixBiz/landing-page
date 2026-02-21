@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Minus, Plus, Search, ShoppingCart } from "lucide-react";
+import { Link } from "react-router";
 import { useCart } from "../../context/CartContext";
 import { catalogProducts } from "../../data/catalogProducts";
 
@@ -176,49 +177,59 @@ export function CatalogPage() {
                             )}
 
                             <div className="mt-auto flex items-center justify-between">
-                                <div>
-                                    <span className="text-lg font-semibold text-red-600">
-                                        Цена по запросу
-                                    </span>
-                                </div>
                                 {addedQuantity > 0 ? (
-                                    <div className="flex items-center gap-2">
-                                        <button
-                                            onClick={() =>
-                                                updateQuantity(
-                                                    product.id,
-                                                    addedQuantity - 1,
-                                                )
-                                            }
-                                            className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                                            title="Уменьшить количество"
+                                    <>
+                                        <div className="flex items-center gap-2">
+                                            <button
+                                                onClick={() =>
+                                                    updateQuantity(
+                                                        product.id,
+                                                        addedQuantity - 1,
+                                                    )
+                                                }
+                                                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                                title="Уменьшить количество"
+                                            >
+                                                <Minus className="w-4 h-4" />
+                                            </button>
+                                            <span className="w-8 text-center font-semibold text-gray-900">
+                                                {addedQuantity}
+                                            </span>
+                                            <button
+                                                onClick={() =>
+                                                    updateQuantity(
+                                                        product.id,
+                                                        addedQuantity + 1,
+                                                    )
+                                                }
+                                                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                                title="Увеличить количество"
+                                            >
+                                                <Plus className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                        <Link
+                                            to="/cart"
+                                            className="ml-3 text-center px-1 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-xs font-medium"
                                         >
-                                            <Minus className="w-4 h-4" />
-                                        </button>
-                                        <span className="w-8 text-center font-semibold text-gray-900">
-                                            {addedQuantity}
-                                        </span>
-                                        <button
-                                            onClick={() =>
-                                                updateQuantity(
-                                                    product.id,
-                                                    addedQuantity + 1,
-                                                )
-                                            }
-                                            className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                                            title="Увеличить количество"
-                                        >
-                                            <Plus className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                                            Перейти в корзину
+                                        </Link>
+                                    </>
                                 ) : (
-                                    <button
-                                        onClick={() => handleAddToCart(product)}
-                                        className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                                        title="Добавить в корзину"
-                                    >
-                                        <ShoppingCart className="w-5 h-5" />
-                                    </button>
+                                    <>
+                                        <div>
+                                            <span className="text-lg font-semibold text-red-600">
+                                                Цена по запросу
+                                            </span>
+                                        </div>
+                                        <button
+                                            onClick={() => handleAddToCart(product)}
+                                            className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                                            title="Добавить в корзину"
+                                        >
+                                            <ShoppingCart className="w-5 h-5" />
+                                        </button>
+                                    </>
                                 )}
                             </div>
                             </div>
