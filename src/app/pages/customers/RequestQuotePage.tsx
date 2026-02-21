@@ -42,23 +42,6 @@ E-mail: [Адрес электронной почты]
                 <div className="absolute inset-0 opacity-20">
                     <div
                         className="w-full h-full"
-                        style={{
-                            backgroundImage: `repeating-linear-gradient(
-              0deg,
-              #8B0000,
-              #8B0000 10px,
-              #A00000 10px,
-              #A00000 20px
-            ),
-            repeating-linear-gradient(
-              90deg,
-              #8B0000,
-              #8B0000 30px,
-              #A00000 30px,
-              #A00000 60px
-            )`,
-                            backgroundBlendMode: "multiply",
-                        }}
                     ></div>
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
