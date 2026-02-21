@@ -1,4 +1,5 @@
 import Logo from "../../imports/Logo1";
+import { catalogProducts } from "../data/catalogProducts";
 
 export function MadeInRussia() {
     return (
@@ -38,12 +39,12 @@ export function MadeInRussia() {
                                 ✓
                             </div>
                             <div className="text-gray-600">
-                                Сертифицированное производство
+                                Внесены в реестр Минпромторга
                             </div>
                         </div>
                         <div className="text-center">
                             <div className="text-4xl font-bold text-red-600 mb-2">
-                                500+
+                                {catalogProducts.length}+
                             </div>
                             <div className="text-gray-600">
                                 Моделей картриджей
