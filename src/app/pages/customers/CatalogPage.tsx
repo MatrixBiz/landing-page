@@ -1,75 +1,24 @@
-import { useState } from "react";
-import { Search, ShoppingCart, Filter } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Search, ShoppingCart } from "lucide-react";
 import { useCart } from "../../context/CartContext";
-
-const catalogProducts = [
-    {
-        id: "lk-p-001",
-        name: "ЛК-П HP LaserJet",
-        code: "CE505A",
-        compatibility: "HP LaserJet P2035/P2055",
-        category: "ЛК-П",
-    },
-    {
-        id: "lk-p-002",
-        name: "ЛК-П Canon LBP",
-        code: "CRG-725",
-        compatibility: "Canon i-SENSYS LBP6000/6020",
-        category: "ЛК-П",
-    },
-    {
-        id: "lk-t-001",
-        name: "ЛК-Т Samsung ML",
-        code: "MLT-D101S",
-        compatibility: "Samsung ML-2160/2165/SCX-3400",
-        category: "ЛК-Т",
-    },
-    {
-        id: "lk-t-002",
-        name: "ЛК-Т Brother HL",
-        code: "TN-2335",
-        compatibility: "Brother HL-L2300/DCP-L2500",
-        category: "ЛК-Т",
-    },
-    {
-        id: "sk-r-001",
-        name: "СК-Р Canon PIXMA",
-        code: "PG-445XL",
-        compatibility: "Canon PIXMA MG2440/MG2540",
-        category: "СК-Р",
-    },
-    {
-        id: "sk-r-002",
-        name: "СК-Р Epson L-series",
-        code: "T6641",
-        compatibility: "Epson L100/L110/L200/L210",
-        category: "СК-Р",
-    },
-    {
-        id: "lk-p-003",
-        name: "ЛК-П Xerox WorkCentre",
-        code: "106R02773",
-        compatibility: "Xerox WorkCentre 3020/3025",
-        category: "ЛК-П",
-    },
-    {
-        id: "lk-t-003",
-        name: "ЛК-Т Kyocera FS",
-        code: "TK-1110",
-        compatibility: "Kyocera FS-1040/1020MFP/1120MFP",
-        category: "ЛК-Т",
-    },
-];
+import { catalogProducts } from "../../data/catalogProducts";
 
 export function CatalogPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string>("all");
     const { addToCart } = useCart();
+    const categoryOptions = useMemo(
+        () => [...new Set(catalogProducts.map((product) => product.category))],
+        [],
+    );
 
     const filteredProducts = catalogProducts.filter((product) => {
         const matchesSearch =
             product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             product.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.manufacturer
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()) ||
             product.compatibility
                 .toLowerCase()
                 .includes(searchQuery.toLowerCase());
@@ -126,7 +75,7 @@ export function CatalogPage() {
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                             <input
                                 type="text"
-                                placeholder="Поиск по названию, коду или совместимости..."
+                                placeholder="Поиск по названию, коду, производителю или совместимости..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
@@ -134,7 +83,7 @@ export function CatalogPage() {
                         </div>
 
                         {/* Category Filter */}
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-wrap">
                             <button
                                 onClick={() => setSelectedCategory("all")}
                                 className={`px-4 py-2 rounded-lg transition-colors ${
@@ -145,36 +94,19 @@ export function CatalogPage() {
                             >
                                 Все
                             </button>
-                            <button
-                                onClick={() => setSelectedCategory("ЛК-П")}
-                                className={`px-4 py-2 rounded-lg transition-colors ${
-                                    selectedCategory === "ЛК-П"
-                                        ? "bg-red-600 text-white"
-                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                }`}
-                            >
-                                ЛК-П
-                            </button>
-                            <button
-                                onClick={() => setSelectedCategory("ЛК-Т")}
-                                className={`px-4 py-2 rounded-lg transition-colors ${
-                                    selectedCategory === "ЛК-Т"
-                                        ? "bg-red-600 text-white"
-                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                }`}
-                            >
-                                ЛК-Т
-                            </button>
-                            <button
-                                onClick={() => setSelectedCategory("СК-Р")}
-                                className={`px-4 py-2 rounded-lg transition-colors ${
-                                    selectedCategory === "СК-Р"
-                                        ? "bg-red-600 text-white"
-                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                }`}
-                            >
-                                СК-Р
-                            </button>
+                            {categoryOptions.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setSelectedCategory(category)}
+                                    className={`px-4 py-2 rounded-lg transition-colors ${
+                                        selectedCategory === category
+                                            ? "bg-red-600 text-white"
+                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                    }`}
+                                >
+                                    {category}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -196,9 +128,12 @@ export function CatalogPage() {
                                 />
                             </div>
 
-                            <div className="mb-2">
+                            <div className="mb-2 flex items-center justify-between gap-2">
                                 <span className="text-xs text-red-600 font-semibold">
                                     {product.category}
+                                </span>
+                                <span className="text-xs text-gray-600 font-medium truncate">
+                                    {product.manufacturer}
                                 </span>
                             </div>
 
@@ -211,6 +146,11 @@ export function CatalogPage() {
                             <p className="text-xs text-gray-500 mb-4">
                                 {product.compatibility}
                             </p>
+                            {product.resource && (
+                                <p className="text-xs text-gray-500 mb-4">
+                                    Ресурс: {product.resource} стр.
+                                </p>
+                            )}
 
                             <div className="flex items-center justify-between">
                                 <div>
