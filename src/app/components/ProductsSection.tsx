@@ -1,5 +1,3 @@
-import { ImageWithFallback } from "./figma/ImageWithFallback";
-
 const products = [
     {
         id: 1,
@@ -47,7 +45,7 @@ export function ProductsSection() {
                     {/* First Product - Large */}
                     <div className="bg-red-600 rounded-2xl p-8 sm:p-12 relative overflow-hidden min-h-[400px] flex flex-col justify-end">
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <ImageWithFallback
+                            <img
                                 src={products[0].image}
                                 alt={products[0].name}
                                 className="w-full h-full object-contain p-8"
@@ -66,7 +64,7 @@ export function ProductsSection() {
                     {/* Second Product - Large */}
                     <div className="bg-red-600 rounded-2xl p-8 sm:p-12 relative overflow-hidden min-h-[400px] flex flex-col justify-end">
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <ImageWithFallback
+                            <img
                                 src={products[1].image}
                                 alt={products[1].name}
                                 className="w-full h-full object-contain p-8"
@@ -86,7 +84,7 @@ export function ProductsSection() {
                 {/* Third Product - Full Width */}
                 <div className="bg-red-600 rounded-2xl p-8 sm:p-12 relative overflow-hidden min-h-[400px] flex flex-col justify-end">
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <ImageWithFallback
+                        <img
                             src={products[2].image}
                             alt={products[2].name}
                             className="w-full h-full object-contain p-8"

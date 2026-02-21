@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Search, ShoppingCart, Filter } from "lucide-react";
 import { useCart } from "../../context/CartContext";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 
 const catalogProducts = [
     {
@@ -190,7 +189,7 @@ export function CatalogPage() {
                             className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow"
                         >
                             <div className="aspect-square bg-gray-50 rounded-lg mb-4 flex items-center justify-center">
-                                <ImageWithFallback
+                                <img
                                     src="https://images.unsplash.com/photo-1723672947453-e6d09052bdf3?w=300"
                                     alt={product.name}
                                     className="w-32 h-32 object-contain"

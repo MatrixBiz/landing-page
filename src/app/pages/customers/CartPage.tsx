@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { useCart } from "../../context/CartContext";
 import { Trash2, Plus, Minus, Mail, ShoppingBag } from "lucide-react";
-import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 
 export function CartPage() {
     const { items, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -85,7 +84,7 @@ ${itemsList}
                             >
                                 <div className="flex gap-6">
                                     <div className="w-24 h-24 bg-gray-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <ImageWithFallback
+                                        <img
                                             src="https://images.unsplash.com/photo-1723672947453-e6d09052bdf3?w=200"
                                             alt={item.name}
                                             className="w-16 h-16 object-contain"
