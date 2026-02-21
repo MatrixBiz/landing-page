@@ -40,7 +40,7 @@ export function ProductsSection() {
                                         {manufacturerCount}
                                     </p>
                                     <p className="text-xs text-gray-600">
-                                        брендов
+                                        совместимых брендов
                                     </p>
                                 </div>
                                 <div className="rounded-xl border border-gray-200 p-4">

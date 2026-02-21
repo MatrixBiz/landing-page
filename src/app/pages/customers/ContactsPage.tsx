@@ -1,5 +1,6 @@
 import { Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { formatRussianPhone } from "../../utils/phoneMask";
 
 export function ContactsPage() {
     const [formData, setFormData] = useState({
@@ -211,7 +212,7 @@ export function ContactsPage() {
                                         onChange={(e) =>
                                             setFormData({
                                                 ...formData,
-                                                phone: e.target.value,
+                                                phone: formatRussianPhone(e.target.value),
                                             })
                                         }
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"

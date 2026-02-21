@@ -22,7 +22,7 @@ export function MadeInRussia() {
                     <p className="text-xl text-gray-600 max-w-2xl mb-8">
                         Полный производственный цикл на территории Российской
                         Федерации. Контроль качества на каждом этапе
-                        производства.
+                        производства и эксплуатации.
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12 w-full max-w-4xl">

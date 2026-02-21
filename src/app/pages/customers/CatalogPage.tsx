@@ -110,7 +110,7 @@ export function CatalogPage() {
                                 }
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-red-600 focus:border-transparent"
                             >
-                                <option value="all">Все производители</option>
+                                <option value="all">Все</option>
                                 {manufacturerOptions.map((manufacturer) => (
                                     <option key={manufacturer} value={manufacturer}>
                                         {manufacturer}

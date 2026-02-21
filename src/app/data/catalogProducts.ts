@@ -16393,7 +16393,7 @@ export const catalogProducts: CatalogProduct[] = [
         "code": "THМ247",
         "compatibility": "Катюша Р247/ М247",
         "category": "тонер-картридж",
-        "manufacturer": "Катюша",
+        "manufacturer": "Разные производители",
         "resource": "13000",
         "color": "Черный (Black)",
         "price": 0
@@ -16404,7 +16404,7 @@ export const catalogProducts: CatalogProduct[] = [
         "code": "THМ348",
         "compatibility": "Катюша M348",
         "category": "тонер-картридж",
-        "manufacturer": "Катюша",
+        "manufacturer": "Разные производители",
         "resource": "30000",
         "color": "Черный (Black)",
         "price": 0
@@ -16415,7 +16415,7 @@ export const catalogProducts: CatalogProduct[] = [
         "code": "ТНМ130",
         "compatibility": "Катюша М130 / Р130",
         "category": "тонер-картридж",
-        "manufacturer": "Катюша",
+        "manufacturer": "Разные производители",
         "resource": "3000",
         "color": "Черный (Black)",
         "price": 0
@@ -16426,7 +16426,7 @@ export const catalogProducts: CatalogProduct[] = [
         "code": "TK-240A",
         "compatibility": "Катюша 140/Р140/М240",
         "category": "тонер-картридж",
-        "manufacturer": "Катюша",
+        "manufacturer": "Разные производители",
         "resource": "6000",
         "color": "Черный (Black)",
         "price": 0
@@ -16437,7 +16437,7 @@ export const catalogProducts: CatalogProduct[] = [
         "code": "TK-240X",
         "compatibility": "Катюша P140 / M140 / M240",
         "category": "тонер-картридж",
-        "manufacturer": "Катюша",
+        "manufacturer": "Разные производители",
         "resource": "9000",
         "color": "Черный (Black)",
         "price": 0
@@ -16448,7 +16448,7 @@ export const catalogProducts: CatalogProduct[] = [
         "code": "TK-133",
         "compatibility": "Катюша М133 / Р133",
         "category": "тонер-картридж",
-        "manufacturer": "Катюша",
+        "manufacturer": "Разные производители",
         "resource": "3000",
         "color": "Черный (Black)",
         "price": 0
