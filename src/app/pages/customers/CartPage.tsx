@@ -82,73 +82,63 @@ ${itemsList}
                                 key={item.id}
                                 className="bg-white rounded-lg shadow-md p-6"
                             >
-                                <div className="flex gap-6">
-                                    <div className="w-24 h-24 bg-gray-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1723672947453-e6d09052bdf3?w=200"
-                                            alt={item.name}
-                                            className="w-16 h-16 object-contain"
-                                        />
+                                <div className="flex-1">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div>
+                                            <h3 className="font-semibold text-gray-900">
+                                                {item.name}
+                                            </h3>
+                                            <p className="text-sm text-gray-600">
+                                                Код: {item.code}
+                                            </p>
+                                            <p className="text-xs text-gray-500 mt-1">
+                                                {item.compatibility}
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={() =>
+                                                removeFromCart(item.id)
+                                            }
+                                            className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+                                            title="Удалить"
+                                        >
+                                            <Trash2 className="w-5 h-5" />
+                                        </button>
                                     </div>
 
-                                    <div className="flex-1">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <div>
-                                                <h3 className="font-semibold text-gray-900">
-                                                    {item.name}
-                                                </h3>
-                                                <p className="text-sm text-gray-600">
-                                                    Код: {item.code}
-                                                </p>
-                                                <p className="text-xs text-gray-500 mt-1">
-                                                    {item.compatibility}
-                                                </p>
-                                            </div>
+                                    <div className="flex items-center justify-between mt-4">
+                                        <div className="flex items-center gap-3">
                                             <button
                                                 onClick={() =>
-                                                    removeFromCart(item.id)
+                                                    updateQuantity(
+                                                        item.id,
+                                                        item.quantity - 1,
+                                                    )
                                                 }
-                                                className="p-2 text-gray-400 hover:text-red-600 transition-colors"
-                                                title="Удалить"
+                                                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
                                             >
-                                                <Trash2 className="w-5 h-5" />
+                                                <Minus className="w-4 h-4" />
+                                            </button>
+                                            <span className="w-12 text-center font-semibold">
+                                                {item.quantity}
+                                            </span>
+                                            <button
+                                                onClick={() =>
+                                                    updateQuantity(
+                                                        item.id,
+                                                        item.quantity + 1,
+                                                    )
+                                                }
+                                                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                                            >
+                                                <Plus className="w-4 h-4" />
                                             </button>
                                         </div>
 
-                                        <div className="flex items-center justify-between mt-4">
-                                            <div className="flex items-center gap-3">
-                                                <button
-                                                    onClick={() =>
-                                                        updateQuantity(
-                                                            item.id,
-                                                            item.quantity - 1,
-                                                        )
-                                                    }
-                                                    className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-                                                >
-                                                    <Minus className="w-4 h-4" />
-                                                </button>
-                                                <span className="w-12 text-center font-semibold">
-                                                    {item.quantity}
-                                                </span>
-                                                <button
-                                                    onClick={() =>
-                                                        updateQuantity(
-                                                            item.id,
-                                                            item.quantity + 1,
-                                                        )
-                                                    }
-                                                    className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-                                                >
-                                                    <Plus className="w-4 h-4" />
-                                                </button>
-                                            </div>
-
-                                            <div className="text-right">
-                                                <span className="text-sm font-semibold text-red-600">
-                                                    Цена по запросу
-                                                </span>
-                                            </div>
+                                        <div className="text-right">
+                                            <span className="text-sm font-semibold text-red-600">
+                                                Цена по запросу
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
