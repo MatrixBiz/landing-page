@@ -147,91 +147,93 @@ export function CatalogPage() {
                                 key={product.id}
                                 className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow flex flex-col"
                             >
-                            <div className="mb-2">
-                                <span className="text-xs text-gray-600 font-medium">
-                                    {product.manufacturer}
-                                </span>
-                            </div>
+                                <div className="mb-2">
+                                    <span className="text-xs text-gray-600 font-medium">
+                                        {product.manufacturer}
+                                    </span>
+                                </div>
 
-                            <h3
-                                className="font-semibold text-gray-900 mb-1 break-words"
-                                style={{
-                                    display: "-webkit-box",
-                                    WebkitLineClamp: 3,
-                                    WebkitBoxOrient: "vertical",
-                                    overflow: "hidden",
-                                }}
-                            >
-                                {product.name}
-                            </h3>
-                            <p className="text-sm text-gray-600 mb-1">
-                                Код: {product.code}
-                            </p>
-                            <p className="text-xs text-gray-500 mb-4">
-                                {product.compatibility}
-                            </p>
-                            {product.resource && (
-                                <p className="text-xs text-gray-500 mb-4">
-                                    Ресурс: {product.resource} стр.
+                                <h3
+                                    className="font-semibold text-gray-900 mb-1 break-words"
+                                    style={{
+                                        display: "-webkit-box",
+                                        WebkitLineClamp: 3,
+                                        WebkitBoxOrient: "vertical",
+                                        overflow: "hidden",
+                                    }}
+                                >
+                                    {product.name}
+                                </h3>
+                                <p className="text-sm text-gray-600 mb-1">
+                                    Код: {product.code}
                                 </p>
-                            )}
-
-                            <div className="mt-auto flex items-center justify-between">
-                                {addedQuantity > 0 ? (
-                                    <>
-                                        <div className="flex items-center gap-2">
-                                            <button
-                                                onClick={() =>
-                                                    updateQuantity(
-                                                        product.id,
-                                                        addedQuantity - 1,
-                                                    )
-                                                }
-                                                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                                                title="Уменьшить количество"
-                                            >
-                                                <Minus className="w-4 h-4" />
-                                            </button>
-                                            <span className="w-8 text-center font-semibold text-gray-900">
-                                                {addedQuantity}
-                                            </span>
-                                            <button
-                                                onClick={() =>
-                                                    updateQuantity(
-                                                        product.id,
-                                                        addedQuantity + 1,
-                                                    )
-                                                }
-                                                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                                                title="Увеличить количество"
-                                            >
-                                                <Plus className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                        <Link
-                                            to="/cart"
-                                            className="ml-3 text-center px-1 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-xs font-medium"
-                                        >
-                                            Перейти в корзину
-                                        </Link>
-                                    </>
-                                ) : (
-                                    <>
-                                        <div>
-                                            <span className="text-lg font-semibold text-red-600">
-                                                Цена по запросу
-                                            </span>
-                                        </div>
-                                        <button
-                                            onClick={() => handleAddToCart(product)}
-                                            className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                                            title="Добавить в корзину"
-                                        >
-                                            <ShoppingCart className="w-5 h-5" />
-                                        </button>
-                                    </>
+                                <p className="text-xs text-gray-500 mb-4">
+                                    {product.compatibility}
+                                </p>
+                                {product.resource && (
+                                    <p className="text-xs text-gray-500 mb-4">
+                                        Ресурс: {product.resource} стр.
+                                    </p>
                                 )}
-                            </div>
+
+                                <div className="mt-auto flex items-center justify-between">
+                                    {addedQuantity > 0 ? (
+                                        <>
+                                            <div className="flex items-center gap-2">
+                                                <button
+                                                    onClick={() =>
+                                                        updateQuantity(
+                                                            product.id,
+                                                            addedQuantity - 1,
+                                                        )
+                                                    }
+                                                    className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                                    title="Уменьшить количество"
+                                                >
+                                                    <Minus className="w-4 h-4" />
+                                                </button>
+                                                <span className="w-8 text-center font-semibold text-gray-900">
+                                                    {addedQuantity}
+                                                </span>
+                                                <button
+                                                    onClick={() =>
+                                                        updateQuantity(
+                                                            product.id,
+                                                            addedQuantity + 1,
+                                                        )
+                                                    }
+                                                    className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                                    title="Увеличить количество"
+                                                >
+                                                    <Plus className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                            <Link
+                                                to="/cart"
+                                                className="ml-3 text-center px-1 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-xs font-medium"
+                                            >
+                                                Перейти в корзину
+                                            </Link>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div>
+                                                <span className="text-lg font-semibold text-red-600">
+                                                    Цена по запросу
+                                                </span>
+                                            </div>
+                                            <button
+                                                onClick={() =>
+                                                    handleAddToCart(product)
+                                                }
+                                                className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                                                title="Добавить в корзину"
+                                            >
+                                                <ShoppingCart className="w-5 h-5" />
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         );
                     })}

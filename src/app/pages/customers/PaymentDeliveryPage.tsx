@@ -124,83 +124,88 @@ export function PaymentDeliveryPage() {
                 </div>
 
                 {/* Delivery Calculator */}
-                <div className="bg-white rounded-lg shadow-md p-8 mb-12">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="p-3 bg-red-100 rounded-lg">
-                            <Calculator className="w-8 h-8 text-red-600" />
-                        </div>
-                        <h2 className="text-3xl font-bold text-gray-900">
-                            Калькулятор доставки
-                        </h2>
-                    </div>
+                {/*<div className="bg-white rounded-lg shadow-md p-8 mb-12">*/}
+                {/*    <div className="flex items-center gap-3 mb-6">*/}
+                {/*        <div className="p-3 bg-red-100 rounded-lg">*/}
+                {/*            <Calculator className="w-8 h-8 text-red-600" />*/}
+                {/*        </div>*/}
+                {/*        <h2 className="text-3xl font-bold text-gray-900">*/}
+                {/*            Калькулятор доставки*/}
+                {/*        </h2>*/}
+                {/*    </div>*/}
 
-                    {/* Brick Wall Info */}
-                    <div className="relative bg-red-800 rounded-lg py-8 px-6 mb-6 overflow-hidden">
-                        <div className="absolute inset-0 opacity-20">
-                            <div className="w-full h-full"></div>
-                        </div>
-                        <div className="relative z-10">
-                            <div className="flex items-start gap-4 text-white">
-                                <Package className="w-12 h-12 flex-shrink-0" />
-                                <div>
-                                    <h3 className="text-xl font-bold mb-2">
-                                        Стандартные параметры груза:
-                                    </h3>
-                                    <div className="space-y-1 text-white/90">
-                                        <p>
-                                            • Средний объем одного места: 0.13
-                                            м³
-                                        </p>
-                                        <p>
-                                            • Размеры транспортировочной тары:
-                                            50×60×45 см
-                                        </p>
-                                        <p>• Средний вес одного места: 15 кг</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                {/*    /!* Brick Wall Info *!/*/}
+                {/*    <div className="relative bg-red-800 rounded-lg py-8 px-6 mb-6 overflow-hidden">*/}
+                {/*        <div className="absolute inset-0 opacity-20">*/}
+                {/*            <div className="w-full h-full"></div>*/}
+                {/*        </div>*/}
+                {/*        <div className="relative z-10">*/}
+                {/*            <div className="flex items-start gap-4 text-white">*/}
+                {/*                <Package className="w-12 h-12 flex-shrink-0" />*/}
+                {/*                <div>*/}
+                {/*                    <h3 className="text-xl font-bold mb-2">*/}
+                {/*                        Стандартные параметры груза:*/}
+                {/*                    </h3>*/}
+                {/*                    <div className="space-y-1 text-white/90">*/}
+                {/*                        <p>*/}
+                {/*                            • Средний объем одного места: 0.13*/}
+                {/*                            м³*/}
+                {/*                        </p>*/}
+                {/*                        <p>*/}
+                {/*                            • Размеры транспортировочной тары:*/}
+                {/*                            50×60×45 см*/}
+                {/*                        </p>*/}
+                {/*                        <p>• Средний вес одного места: 15 кг</p>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Город доставки
-                            </label>
-                            <input
-                                type="text"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                                placeholder="Введите город"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                            />
-                        </div>
+                {/*    <div className="grid md:grid-cols-2 gap-6">*/}
+                {/*        <div>*/}
+                {/*            <label className="block text-sm font-medium text-gray-700 mb-2">*/}
+                {/*                Город доставки*/}
+                {/*            </label>*/}
+                {/*            <input*/}
+                {/*                type="text"*/}
+                {/*                value={city}*/}
+                {/*                onChange={(e) => setCity(e.target.value)}*/}
+                {/*                placeholder="Введите город"*/}
+                {/*                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"*/}
+                {/*            />*/}
+                {/*        </div>*/}
 
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Объем груза (м³)
-                            </label>
-                            <input
-                                type="number"
-                                value={volume}
-                                onChange={(e) =>
-                                    setVolume(Number(e.target.value))
-                                }
-                                step="0.01"
-                                min="0.13"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                            />
-                        </div>
-                    </div>
+                {/*        <div>*/}
+                {/*            <label className="block text-sm font-medium text-gray-700 mb-2">*/}
+                {/*                Объем груза (м³)*/}
+                {/*            </label>*/}
+                {/*            <input*/}
+                {/*                type="number"*/}
+                {/*                value={volume}*/}
+                {/*                onChange={(e) =>*/}
+                {/*                    setVolume(Number(e.target.value))*/}
+                {/*                }*/}
+                {/*                step="0.01"*/}
+                {/*                min="0.13"*/}
+                {/*                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"*/}
+                {/*            />*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
 
-                    <button className="mt-6 w-full py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors">
-                        Рассчитать стоимость доставки
-                    </button>
+                {/*    <a*/}
+                {/*        href="https://www.dellin.ru/requests/"*/}
+                {/*        target="_blank"*/}
+                {/*        rel="noopener noreferrer"*/}
+                {/*        className="mt-6 w-full py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors text-center block"*/}
+                {/*    >*/}
+                {/*        Рассчитать стоимость доставки*/}
+                {/*    </a>*/}
 
-                    <p className="text-sm text-gray-500 mt-4 text-center">
-                        Расчет через интеграцию с "Деловыми Линиями"
-                    </p>
-                </div>
+                {/*    <p className="text-sm text-gray-500 mt-4 text-center">*/}
+                {/*        Расчет через интеграцию с "Деловыми Линиями"*/}
+                {/*    </p>*/}
+                {/*</div>*/}
 
                 {/* Important Info */}
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">

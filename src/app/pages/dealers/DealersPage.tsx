@@ -142,52 +142,52 @@ export function DealersPage() {
                 </div>
 
                 {/* Track Order Section */}
-                <div className="bg-white rounded-lg shadow-md p-8 mb-12">
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="p-4 bg-purple-100 rounded-lg">
-                            <Search className="w-10 h-10 text-purple-600" />
-                        </div>
-                        <h2 className="text-2xl font-bold text-gray-900">
-                            Отследить заказ
-                        </h2>
-                    </div>
+                {/*<div className="bg-white rounded-lg shadow-md p-8 mb-12">*/}
+                {/*    <div className="flex items-center gap-4 mb-6">*/}
+                {/*        <div className="p-4 bg-purple-100 rounded-lg">*/}
+                {/*            <Search className="w-10 h-10 text-purple-600" />*/}
+                {/*        </div>*/}
+                {/*        <h2 className="text-2xl font-bold text-gray-900">*/}
+                {/*            Отследить заказ*/}
+                {/*        </h2>*/}
+                {/*    </div>*/}
 
-                    <p className="text-gray-600 mb-6">
-                        Введите номер вашего заказа, чтобы узнать текущий статус
-                        и ориентировочное время готовности.
-                    </p>
+                {/*    <p className="text-gray-600 mb-6">*/}
+                {/*        Введите номер вашего заказа, чтобы узнать текущий статус*/}
+                {/*        и ориентировочное время готовности.*/}
+                {/*    </p>*/}
 
-                    <div className="flex gap-4 max-w-2xl">
-                        <input
-                            type="text"
-                            value={orderNumber}
-                            onChange={(e) => setOrderNumber(e.target.value)}
-                            placeholder="Введите номер заказа (например, ФЗ-2026-0001)"
-                            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
-                        />
-                        <button
-                            onClick={handleTrackOrder}
-                            className="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors whitespace-nowrap"
-                        >
-                            Проверить статус
-                        </button>
-                    </div>
+                {/*    <div className="flex gap-4 max-w-2xl">*/}
+                {/*        <input*/}
+                {/*            type="text"*/}
+                {/*            value={orderNumber}*/}
+                {/*            onChange={(e) => setOrderNumber(e.target.value)}*/}
+                {/*            placeholder="Введите номер заказа (например, ФЗ-2026-0001)"*/}
+                {/*            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"*/}
+                {/*        />*/}
+                {/*        <button*/}
+                {/*            onClick={handleTrackOrder}*/}
+                {/*            className="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors whitespace-nowrap"*/}
+                {/*        >*/}
+                {/*            Проверить статус*/}
+                {/*        </button>*/}
+                {/*    </div>*/}
 
-                    <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                        <p className="text-sm text-gray-600">
-                            <strong>Примечание:</strong> Для получения
-                            актуальной информации о статусе заказа вы также
-                            можете связаться с вашим менеджером через мессенджер
-                            или по телефону
-                            <a
-                                href="tel:+78001234567"
-                                className="text-red-600 ml-1"
-                            >
-                                8-800-123-45-67
-                            </a>
-                        </p>
-                    </div>
-                </div>
+                {/*    <div className="mt-6 bg-gray-50 rounded-lg p-4">*/}
+                {/*        <p className="text-sm text-gray-600">*/}
+                {/*            <strong>Примечание:</strong> Для получения*/}
+                {/*            актуальной информации о статусе заказа вы также*/}
+                {/*            можете связаться с вашим менеджером через мессенджер*/}
+                {/*            или по телефону*/}
+                {/*            <a*/}
+                {/*                href="tel:+78001234567"*/}
+                {/*                className="text-red-600 ml-1"*/}
+                {/*            >*/}
+                {/*                8-800-123-45-67*/}
+                {/*            </a>*/}
+                {/*        </p>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
                 {/* Logistics Section */}
                 <div className="bg-white rounded-lg shadow-md p-8">
