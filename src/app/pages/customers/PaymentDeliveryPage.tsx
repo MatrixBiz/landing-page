@@ -137,9 +137,7 @@ export function PaymentDeliveryPage() {
                     {/* Brick Wall Info */}
                     <div className="relative bg-red-800 rounded-lg py-8 px-6 mb-6 overflow-hidden">
                         <div className="absolute inset-0 opacity-20">
-                            <div
-                                className="w-full h-full"
-                            ></div>
+                            <div className="w-full h-full"></div>
                         </div>
                         <div className="relative z-10">
                             <div className="flex items-start gap-4 text-white">

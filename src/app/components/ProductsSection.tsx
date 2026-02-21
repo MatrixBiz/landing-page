@@ -4,7 +4,9 @@ import { catalogProducts } from "../data/catalogProducts";
 
 export function ProductsSection() {
     const manufacturerCount = useMemo(
-        () => new Set(catalogProducts.map((product) => product.manufacturer)).size,
+        () =>
+            new Set(catalogProducts.map((product) => product.manufacturer))
+                .size,
         [],
     );
 
@@ -21,8 +23,8 @@ export function ProductsSection() {
                                 Совместимые картриджи для офисной печати
                             </h2>
                             <p className="text-gray-600 mb-8">
-                                Подбор по производителю, коду и совместимости.
-                                В каталоге представлены позиции для популярных
+                                Подбор по производителю, коду и совместимости. В
+                                каталоге представлены позиции для популярных
                                 линеек печатающих устройств.
                             </p>
 

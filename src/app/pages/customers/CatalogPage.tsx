@@ -57,7 +57,10 @@ export function CatalogPage() {
                     return;
                 }
                 setVisibleCount((prev) =>
-                    Math.min(prev + PRODUCTS_BATCH_SIZE, filteredProducts.length),
+                    Math.min(
+                        prev + PRODUCTS_BATCH_SIZE,
+                        filteredProducts.length,
+                    ),
                 );
             },
             { rootMargin: "300px 0px" },
@@ -112,7 +115,10 @@ export function CatalogPage() {
                             >
                                 <option value="all">Все</option>
                                 {manufacturerOptions.map((manufacturer) => (
-                                    <option key={manufacturer} value={manufacturer}>
+                                    <option
+                                        key={manufacturer}
+                                        value={manufacturer}
+                                    >
                                         {manufacturer}
                                     </option>
                                 ))}

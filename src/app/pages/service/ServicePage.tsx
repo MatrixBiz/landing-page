@@ -1,6 +1,9 @@
 import { AlertTriangle, FileText, Send, CheckCircle } from "lucide-react";
 import { useState } from "react";
-import { formatRussianPhone } from "../../utils/phoneMask";
+import {
+    formatRussianPhone,
+    handleRussianPhoneMaskedBackspace,
+} from "../../utils/phoneMask";
 
 export function ServicePage() {
     const [formData, setFormData] = useState({
@@ -200,10 +203,43 @@ Email: ${formData.email}
                                                 type="tel"
                                                 required
                                                 value={formData.phone}
+                                                onKeyDown={(e) => {
+                                                    if (e.key !== "Backspace") {
+                                                        return;
+                                                    }
+                                                    const result =
+                                                        handleRussianPhoneMaskedBackspace(
+                                                            formData.phone,
+                                                            e.currentTarget
+                                                                .selectionStart ??
+                                                                formData.phone
+                                                                    .length,
+                                                        );
+                                                    if (!result) {
+                                                        return;
+                                                    }
+
+                                                    e.preventDefault();
+                                                    setFormData({
+                                                        ...formData,
+                                                        phone: result.value,
+                                                    });
+
+                                                    requestAnimationFrame(
+                                                        () => {
+                                                            e.currentTarget.setSelectionRange(
+                                                                result.cursorPosition,
+                                                                result.cursorPosition,
+                                                            );
+                                                        },
+                                                    );
+                                                }}
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
-                                                        phone: formatRussianPhone(e.target.value),
+                                                        phone: formatRussianPhone(
+                                                            e.target.value,
+                                                        ),
                                                     })
                                                 }
                                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
