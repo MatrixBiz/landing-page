@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
     formatRussianPhone,
     handleRussianPhoneMaskedBackspace,
-} from "../../utils/phoneMask";
+} from "@/app/utils/phoneMask";
 
 export function ContactsPage() {
     const [formData, setFormData] = useState({
@@ -150,32 +150,32 @@ export function ContactsPage() {
                         </div>
 
                         {/* Messengers */}
-                            <div className="bg-white rounded-lg shadow-md p-6">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <MessageCircle className="w-6 h-6 text-red-600" />
-                                    <h2 className="text-xl font-bold text-gray-900">
-                                        Мессенджеры
-                                    </h2>
-                                </div>
-                                <div className="text-sm text-gray-600 mb-4">
-                                    Для срочных вопросов свяжитесь с нами через
-                                    мессенджер:
-                                </div>
-                                <div className="flex gap-3">
-                                    <a
-                                        href="https://t.me/zvezdafabrika"
-                                        className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center font-semibold"
-                                    >
-                                        Telegram
-                                    </a>
-                                    {/*<a*/}
-                                    {/*    href="#"*/}
-                                    {/*    className="flex-1 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center font-semibold"*/}
-                                    {/*>*/}
-                                    {/*    VK Мессенджер*/}
-                                    {/*</a>*/}
-                                </div>
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <div className="flex items-center gap-3 mb-4">
+                                <MessageCircle className="w-6 h-6 text-red-600" />
+                                <h2 className="text-xl font-bold text-gray-900">
+                                    Мессенджеры
+                                </h2>
                             </div>
+                            <div className="text-sm text-gray-600 mb-4">
+                                Для срочных вопросов свяжитесь с нами через
+                                мессенджер:
+                            </div>
+                            <div className="flex gap-3">
+                                <a
+                                    href="https://t.me/zvezdafabrika"
+                                    className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center font-semibold"
+                                >
+                                    Telegram
+                                </a>
+                                {/*<a*/}
+                                {/*    href="#"*/}
+                                {/*    className="flex-1 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center font-semibold"*/}
+                                {/*>*/}
+                                {/*    VK Мессенджер*/}
+                                {/*</a>*/}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Callback Form */}

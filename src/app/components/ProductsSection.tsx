@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router";
-import { catalogProducts } from "../data/catalogProducts";
+import { catalogProducts } from "@/app/data/catalogProducts";
 
 export function ProductsSection() {
     const manufacturerCount = useMemo(

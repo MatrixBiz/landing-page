@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "@/app/context/CartContext";
 import { Trash2, Plus, Minus, Mail, ShoppingBag } from "lucide-react";
 
 export function CartPage() {

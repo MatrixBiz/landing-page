@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
     formatRussianPhone,
     handleRussianPhoneMaskedBackspace,
-} from "../../utils/phoneMask";
+} from "@/app/utils/phoneMask";
 
 export function ServicePage() {
     const [formData, setFormData] = useState({

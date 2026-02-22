@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router";
 import { ShoppingCart, Mail, Menu, X } from "lucide-react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "@/app/context/CartContext";
 import { useState } from "react";
-import Logo from "../../imports/Logo1";
+import Logo from "@/app/components/ui/logo.svg";
 
 export function Header() {
     const location = useLocation();
@@ -24,7 +24,11 @@ export function Header() {
                     {/* Logo and Company Name */}
                     <Link to="/" className="flex items-center gap-4">
                         <div className="flex items-center justify-center w-12 h-12">
-                            <Logo />
+                            <img
+                                src={Logo}
+                                alt="Логотип Фабрика Звезда"
+                                className="w-full h-full object-contain"
+                            />
                         </div>
                         <div>
                             <div className="text-xs text-gray-600 uppercase tracking-wide">

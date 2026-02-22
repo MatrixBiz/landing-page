@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Minus, Plus, Search, ShoppingCart } from "lucide-react";
 import { Link } from "react-router";
-import { useCart } from "../../context/CartContext";
-import { catalogProducts } from "../../data/catalogProducts";
+import { useCart } from "@/app/context/CartContext";
+import { catalogProducts } from "@/app/data/catalogProducts";
 
 const PRODUCTS_BATCH_SIZE = 48;
 

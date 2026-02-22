@@ -1,5 +1,5 @@
-import Logo from "../../imports/Logo1";
-import { catalogProducts } from "../data/catalogProducts";
+import Logo from "@/app/components/ui/logo.svg";
+import { catalogProducts } from "@/app/data/catalogProducts";
 
 export function MadeInRussia() {
     return (
@@ -9,7 +9,11 @@ export function MadeInRussia() {
                     {/* Red Logo */}
                     <div className="mb-8 inline-flex items-center justify-center">
                         <div className="w-60 h-60">
-                            <Logo />
+                            <img
+                                src={Logo}
+                                alt="Логотип Фабрика Звезда"
+                                className="w-full h-full object-contain"
+                            />
                         </div>
                     </div>
 

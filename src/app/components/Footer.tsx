@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import Logo from "../../imports/Logo1";
+import Logo from "@/app/components/ui/logo.svg";
 
 export function Footer() {
     return (
@@ -10,7 +10,11 @@ export function Footer() {
                     <div className="col-span-1 md:col-span-2">
                         <Link to="/" className="flex items-center gap-3 mb-4">
                             <div className="flex items-center justify-center w-10 h-10">
-                                <Logo />
+                                <img
+                                    src={Logo}
+                                    alt="Логотип Фабрика Звезда"
+                                    className="w-full h-full object-contain"
+                                />
                             </div>
                             <div>
                                 <div className="text-xs text-gray-400 uppercase">

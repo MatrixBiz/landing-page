@@ -1,4 +1,4 @@
-import type { CartItem } from "../context/CartContext";
+import type { CartItem } from "@/app/context/CartContext";
 
 export interface CatalogProduct extends Omit<CartItem, "quantity"> {
     category: string;
