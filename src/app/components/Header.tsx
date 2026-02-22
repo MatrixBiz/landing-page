@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { ShoppingCart, Mail, Menu, X } from "lucide-react";
+import { ShoppingCart, Mail, Menu, X, ChevronDown } from "lucide-react";
 import { useCart } from "@/app/context/CartContext";
 import { useState } from "react";
 import Logo from "@/app/components/ui/logo.svg";
@@ -9,12 +9,18 @@ export function Header() {
     const { getTotalItems } = useCart();
     const totalItems = getTotalItems();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileCustomersOpen, setMobileCustomersOpen] = useState(false);
 
     const isActive = (path: string) => location.pathname === path;
 
     const handleQuickRequest = () => {
         window.location.href =
             "mailto:info@zvezdafabrika.ru?subject=Быстрый запрос";
+    };
+
+    const closeMobileMenu = () => {
+        setMobileMenuOpen(false);
+        setMobileCustomersOpen(false);
     };
 
     return (
@@ -125,7 +131,15 @@ export function Header() {
                             )}
                         </Link>
                         <button
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            onClick={() =>
+                                setMobileMenuOpen((prev) => {
+                                    const next = !prev;
+                                    if (!next) {
+                                        setMobileCustomersOpen(false);
+                                    }
+                                    return next;
+                                })
+                            }
                             className="p-2 text-gray-700"
                         >
                             {mobileMenuOpen ? (
@@ -142,49 +156,61 @@ export function Header() {
             {mobileMenuOpen && (
                 <div className="lg:hidden bg-white border-t border-gray-200">
                     <nav className="max-w-7xl mx-auto px-4 py-4 space-y-2">
-                        <div className="font-semibold text-gray-900 mb-2">
+                        <button
+                            onClick={() =>
+                                setMobileCustomersOpen((prev) => !prev)
+                            }
+                            className="w-full flex items-center justify-between px-4 py-2 rounded-lg font-semibold text-gray-900 hover:bg-gray-50"
+                        >
                             Для Заказчиков
+                            <ChevronDown
+                                className={`w-5 h-5 transition-transform ${mobileCustomersOpen ? "rotate-180" : ""}`}
+                            />
+                        </button>
+                        <div
+                            className={`space-y-1 pl-2 overflow-hidden transition-all duration-200 ${mobileCustomersOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}`}
+                        >
+                            <Link
+                                to="/catalog"
+                                onClick={closeMobileMenu}
+                                className={`block px-4 py-2 rounded-lg ${isActive("/catalog") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
+                            >
+                                Каталог товаров
+                            </Link>
+                            <Link
+                                to="/request-quote"
+                                onClick={closeMobileMenu}
+                                className={`block px-4 py-2 rounded-lg ${isActive("/request-quote") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
+                            >
+                                Запросить КП
+                            </Link>
+                            <Link
+                                to="/contacts"
+                                onClick={closeMobileMenu}
+                                className={`block px-4 py-2 rounded-lg ${isActive("/contacts") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
+                            >
+                                Контакты
+                            </Link>
+                            <Link
+                                to="/payment-delivery"
+                                onClick={closeMobileMenu}
+                                className={`block px-4 py-2 rounded-lg ${isActive("/payment-delivery") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
+                            >
+                                Оплата и доставка
+                            </Link>
                         </div>
-                        <Link
-                            to="/catalog"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={`block px-4 py-2 rounded-lg ${isActive("/catalog") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
-                        >
-                            Каталог товаров
-                        </Link>
-                        <Link
-                            to="/request-quote"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={`block px-4 py-2 rounded-lg ${isActive("/request-quote") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
-                        >
-                            Запросить КП
-                        </Link>
-                        <Link
-                            to="/contacts"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={`block px-4 py-2 rounded-lg ${isActive("/contacts") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
-                        >
-                            Контакты
-                        </Link>
-                        <Link
-                            to="/payment-delivery"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={`block px-4 py-2 rounded-lg ${isActive("/payment-delivery") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
-                        >
-                            Оплата и доставка
-                        </Link>
 
                         <div className="pt-4 border-t border-gray-200">
                             <Link
                                 to="/dealers"
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={closeMobileMenu}
                                 className={`block px-4 py-2 rounded-lg font-medium ${isActive("/dealers") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
                             >
                                 Для Дилеров
                             </Link>
                             <Link
                                 to="/service"
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={closeMobileMenu}
                                 className={`block px-4 py-2 rounded-lg font-medium ${isActive("/service") ? "bg-red-50 text-red-600" : "text-gray-700 hover:bg-gray-50"}`}
                             >
                                 Сервис
@@ -194,7 +220,7 @@ export function Header() {
                         <button
                             onClick={() => {
                                 handleQuickRequest();
-                                setMobileMenuOpen(false);
+                                closeMobileMenu();
                             }}
                             className="w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                         >

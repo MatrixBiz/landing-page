@@ -53,10 +53,10 @@ export function ContactsPage() {
                                         Горячая линия:
                                     </div>
                                     <a
-                                        href="tel:+78001234567"
+                                        href="tel:88001012258"
                                         className="text-red-600 text-lg"
                                     >
-                                        +7 (937) 586-12-12
+                                        8 800-101-22-58
                                     </a>
                                     <div className="text-sm text-gray-600">
                                         Многоканальный, бесплатно по РФ
