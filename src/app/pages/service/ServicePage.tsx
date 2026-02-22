@@ -35,7 +35,7 @@ Email: ${formData.email}
 
 С уважением,`;
 
-        window.location.href = `mailto:support@fabrikazvezda.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:support@zvezdafabrika.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     };
 
     return (
@@ -368,16 +368,16 @@ Email: ${formData.email}
                                         href="tel:+78001234567"
                                         className="text-red-600 font-semibold"
                                     >
-                                        8-800-123-45-67
+                                        +7 (937) 586-12-12
                                     </a>
                                 </div>
                                 <div>
                                     <div className="text-gray-600">Email:</div>
                                     <a
-                                        href="mailto:support@fabrikazvezda.ru"
+                                        href="mailto:support@zvezdafabrika.ru"
                                         className="text-red-600 font-semibold"
                                     >
-                                        support@fabrikazvezda.ru
+                                        support@zvezdafabrika.ru
                                     </a>
                                 </div>
                                 <div>

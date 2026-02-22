@@ -136,7 +136,7 @@ export function DealersPage() {
                         </button>
 
                         <p className="text-xs text-gray-500 mt-3 text-center">
-                            После заполнения отправьте на info@fabrikazvezda.ru
+                            После заполнения отправьте на info@zvezdafabrika.ru
                         </p>
                     </div>
                 </div>
@@ -183,7 +183,7 @@ export function DealersPage() {
                 {/*                href="tel:+78001234567"*/}
                 {/*                className="text-red-600 ml-1"*/}
                 {/*            >*/}
-                {/*                8-800-123-45-67*/}
+                {/*                +7 (937) 586-12-12*/}
                 {/*            </a>*/}
                 {/*        </p>*/}
                 {/*    </div>*/}

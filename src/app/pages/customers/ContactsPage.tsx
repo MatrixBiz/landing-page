@@ -56,26 +56,26 @@ export function ContactsPage() {
                                         href="tel:+78001234567"
                                         className="text-red-600 text-lg"
                                     >
-                                        8-800-123-45-67
+                                        +7 (937) 586-12-12
                                     </a>
                                     <div className="text-sm text-gray-600">
                                         Многоканальный, бесплатно по РФ
                                     </div>
                                 </div>
-                                <div>
-                                    <div className="font-semibold text-gray-900">
-                                        Городская линия:
-                                    </div>
-                                    <a
-                                        href="tel:+74951234567"
-                                        className="text-red-600 text-lg"
-                                    >
-                                        +7 (495) 123-45-67
-                                    </a>
-                                    <div className="text-sm text-gray-600">
-                                        Ежедневно с 9:00 до 18:00
-                                    </div>
-                                </div>
+                                {/*<div>*/}
+                                {/*    <div className="font-semibold text-gray-900">*/}
+                                {/*        Городская линия:*/}
+                                {/*    </div>*/}
+                                {/*    <a*/}
+                                {/*        href="tel:+74951234567"*/}
+                                {/*        className="text-red-600 text-lg"*/}
+                                {/*    >*/}
+                                {/*        +7 (495) 123-45-67*/}
+                                {/*    </a>*/}
+                                {/*    <div className="text-sm text-gray-600">*/}
+                                {/*        Ежедневно с 9:00 до 18:00*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                             </div>
                         </div>
 
@@ -93,10 +93,10 @@ export function ContactsPage() {
                                         Общие вопросы:
                                     </div>
                                     <a
-                                        href="mailto:info@fabrikazvezda.ru"
+                                        href="mailto:info@zvezdafabrika.ru"
                                         className="text-red-600"
                                     >
-                                        info@fabrikazvezda.ru
+                                        info@zvezdafabrika.ru
                                     </a>
                                 </div>
                                 <div>
@@ -104,10 +104,10 @@ export function ContactsPage() {
                                         Поддержка:
                                     </div>
                                     <a
-                                        href="mailto:support@fabrikazvezda.ru"
+                                        href="mailto:support@zvezdafabrika.ru"
                                         className="text-red-600"
                                     >
-                                        support@fabrikazvezda.ru
+                                        support@zvezdafabrika.ru
                                     </a>
                                 </div>
                             </div>
@@ -150,32 +150,32 @@ export function ContactsPage() {
                         </div>
 
                         {/* Messengers */}
-                        {/*    <div className="bg-white rounded-lg shadow-md p-6">*/}
-                        {/*        <div className="flex items-center gap-3 mb-4">*/}
-                        {/*            <MessageCircle className="w-6 h-6 text-red-600" />*/}
-                        {/*            <h2 className="text-xl font-bold text-gray-900">*/}
-                        {/*                Мессенджеры*/}
-                        {/*            </h2>*/}
-                        {/*        </div>*/}
-                        {/*        <div className="text-sm text-gray-600 mb-4">*/}
-                        {/*            Для срочных вопросов свяжитесь с нами через*/}
-                        {/*            мессенджер:*/}
-                        {/*        </div>*/}
-                        {/*        <div className="flex gap-3">*/}
-                        {/*            <a*/}
-                        {/*                href="#"*/}
-                        {/*                className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center font-semibold"*/}
-                        {/*            >*/}
-                        {/*                Telegram*/}
-                        {/*            </a>*/}
-                        {/*            <a*/}
-                        {/*                href="#"*/}
-                        {/*                className="flex-1 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center font-semibold"*/}
-                        {/*            >*/}
-                        {/*                VK Мессенджер*/}
-                        {/*            </a>*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
+                            <div className="bg-white rounded-lg shadow-md p-6">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <MessageCircle className="w-6 h-6 text-red-600" />
+                                    <h2 className="text-xl font-bold text-gray-900">
+                                        Мессенджеры
+                                    </h2>
+                                </div>
+                                <div className="text-sm text-gray-600 mb-4">
+                                    Для срочных вопросов свяжитесь с нами через
+                                    мессенджер:
+                                </div>
+                                <div className="flex gap-3">
+                                    <a
+                                        href="https://t.me/zvezdafabrika"
+                                        className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center font-semibold"
+                                    >
+                                        Telegram
+                                    </a>
+                                    {/*<a*/}
+                                    {/*    href="#"*/}
+                                    {/*    className="flex-1 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center font-semibold"*/}
+                                    {/*>*/}
+                                    {/*    VK Мессенджер*/}
+                                    {/*</a>*/}
+                                </div>
+                            </div>
                     </div>
 
                     {/* Callback Form */}

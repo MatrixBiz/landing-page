@@ -4,9 +4,9 @@ import { Mail, CheckCircle, Copy } from "lucide-react";
 export function RequestQuotePage() {
     const [includePartners, setIncludePartners] = useState(false);
 
-    const mainEmail = "info@fabrikazvezda.ru";
-    const partnerEmail1 = "matrix@partner.ru";
-    const partnerEmail2 = "trading@fabrikazvezda.ru";
+    const mainEmail = "info@zvezdafabrika.ru";
+    const partnerEmail1 = "kerala2018@mail.ru";
+    const partnerEmail2 = "politon_td@mail.ru";
 
     const handleSendRequest = () => {
         const recipients = includePartners

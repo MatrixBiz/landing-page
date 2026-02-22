@@ -4,7 +4,7 @@ import { Mail } from "lucide-react";
 export function Hero() {
     const handleQuickRequest = () => {
         window.location.href =
-            "mailto:info@fabrikazvezda.ru?subject=Быстрая заявка";
+            "mailto:info@zvezdafabrika.ru?subject=Быстрая заявка";
     };
 
     return (

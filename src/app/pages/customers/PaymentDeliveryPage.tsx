@@ -224,14 +224,14 @@ export function PaymentDeliveryPage() {
                                 href="tel:+78001234567"
                                 className="text-red-600 font-semibold"
                             >
-                                8-800-123-45-67
+                                +7 (937) 586-12-12
                             </a>{" "}
                             или e-mail{" "}
                             <a
-                                href="mailto:info@fabrikazvezda.ru"
+                                href="mailto:info@zvezdafabrika.ru"
                                 className="text-red-600 font-semibold"
                             >
-                                info@fabrikazvezda.ru
+                                info@zvezdafabrika.ru
                             </a>
                         </li>
                     </ul>

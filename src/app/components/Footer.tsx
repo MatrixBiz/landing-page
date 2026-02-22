@@ -94,15 +94,15 @@ export function Footer() {
                                     href="tel:+78001234567"
                                     className="hover:text-white transition-colors"
                                 >
-                                    8-800-123-45-67
+                                    +7 (937) 586-12-12
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="mailto:info@fabrikazvezda.ru"
+                                    href="mailto:info@zvezdafabrika.ru"
                                     className="hover:text-white transition-colors"
                                 >
-                                    info@fabrikazvezda.ru
+                                    info@zvezdafabrika.ru
                                 </a>
                             </li>
                         </ul>

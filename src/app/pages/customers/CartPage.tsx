@@ -21,7 +21,7 @@ ${itemsList}
 
 С уважением,`;
 
-        window.location.href = `mailto:info@fabrikazvezda.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:info@zvezdafabrika.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         clearCart();
     };
 
@@ -39,7 +39,7 @@ ${itemsList}
 
 С уважением,`;
 
-        window.location.href = `mailto:info@fabrikazvezda.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:info@zvezdafabrika.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         clearCart();
     };
 
