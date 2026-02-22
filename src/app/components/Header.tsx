@@ -14,7 +14,7 @@ export function Header() {
 
     const handleQuickRequest = () => {
         window.location.href =
-            "mailto:info@zvezdafabrika.ru?subject=Быстрая заявка";
+            "mailto:info@zvezdafabrika.ru?subject=Быстрый запрос";
     };
 
     return (
@@ -97,7 +97,7 @@ export function Header() {
                             className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                         >
                             <Mail className="w-4 h-4" />
-                            Быстрая заявка
+                            Быстрый запрос
                         </button>
 
                         {/* Cart */}
@@ -199,7 +199,7 @@ export function Header() {
                             className="w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                         >
                             <Mail className="w-4 h-4" />
-                            Быстрая заявка
+                            Быстрый запрос
                         </button>
                     </nav>
                 </div>

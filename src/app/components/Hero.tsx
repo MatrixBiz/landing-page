@@ -4,7 +4,7 @@ import { Mail } from "lucide-react";
 export function Hero() {
     const handleQuickRequest = () => {
         window.location.href =
-            "mailto:info@zvezdafabrika.ru?subject=Быстрая заявка";
+            "mailto:info@zvezdafabrika.ru?subject=Быстрый запрос";
     };
 
     return (
@@ -33,7 +33,7 @@ export function Hero() {
                             className="px-8 py-4 border-2 border-red-600 text-red-600 font-semibold rounded-lg hover:bg-red-50 transition-colors flex items-center justify-center gap-2"
                         >
                             <Mail className="w-5 h-5" />
-                            Быстрая заявка
+                            Быстрый запрос
                         </button>
                     </div>
                 </div>
