@@ -163,7 +163,7 @@ export function ContactsPage() {
                             </div>
                             <div className="flex gap-3">
                                 <a
-                                    href="https://t.me/zvezdafabrika"
+                                    href="https://t.me/fabrikazvezda"
                                     className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center font-semibold"
                                 >
                                     Telegram
