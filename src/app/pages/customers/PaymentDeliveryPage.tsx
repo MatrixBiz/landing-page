@@ -47,9 +47,19 @@ export function PaymentDeliveryPage() {
                                             </div>
                                             <p className="text-sm text-gray-600 mt-1">
                                                 Выставление счета и оплата по
-                                                реквизитам. После получения
-                                                заявки мы направим вам счет на
+                                                реквизитам. После обработки Вашей заявки
+                                                мы направим вам счет на
                                                 оплату в течение 1 часа.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                                        <div className="w-2 h-2 bg-red-600 rounded-full mt-2"></div>
+                                        <div>
+                                            <div className="font-semibold text-gray-900">Условия оплаты
+                                            </div>
+                                            <p className="text-sm text-gray-600 mt-1">
+                                                100% предоплата.
                                             </p>
                                         </div>
                                     </div>

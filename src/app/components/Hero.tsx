@@ -19,7 +19,7 @@ export function Hero() {
                     </h1>
                     <p className="text-xl text-gray-600 mb-8">
                         Высокое качество печати, надежность и долговечность.
-                        Полный цикл производства на территории России.
+                        Весь производственный процесс осуществляется в пределах Российской Федерации.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link

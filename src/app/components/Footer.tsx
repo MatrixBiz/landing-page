@@ -17,10 +17,10 @@ export function Footer() {
                                 />
                             </div>
                             <div>
-                                <div className="text-xs text-gray-400 uppercase">
-                                    АО
+                                <div className="text-xs font-semibold text-white uppercase">
+                                    АКЦИОНЕРНОЕ ОБЩЕСТВО
                                 </div>
-                                <div className="font-bold">ФАБРИКА ЗВЕЗДА</div>
+                                <div className="font-bold text-lg tracking-wide">ФАБРИКА ЗВЕЗДА</div>
                             </div>
                         </Link>
                         <p className="text-gray-400 text-sm mb-4">

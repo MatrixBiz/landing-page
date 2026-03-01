@@ -101,7 +101,7 @@ export function ContactsPage() {
                                 </div>
                                 <div>
                                     <div className="text-sm text-gray-600">
-                                        Поддержка:
+                                        Техническая поддержка:
                                     </div>
                                     <a
                                         href="mailto:support@zvezdafabrika.ru"
