@@ -48,7 +48,7 @@ export function MadeInRussia() {
                         </div>
                         <div className="text-center">
                             <div className="text-4xl font-bold text-red-600 mb-2">
-                                {catalogProducts.length}+
+                                1700+
                             </div>
                             <div className="text-gray-600">
                                 Моделей картриджей

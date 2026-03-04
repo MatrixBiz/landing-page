@@ -140,7 +140,7 @@ export function ContactsPage() {
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-gray-700">
-                                        Суббота, Воскресенье:
+                                        Суббота, воскресенье:
                                     </span>
                                     <span className="font-semibold text-red-600">
                                         Выходные дни
@@ -154,7 +154,7 @@ export function ContactsPage() {
                             <div className="flex items-center gap-3 mb-4">
                                 <MessageCircle className="w-6 h-6 text-red-600" />
                                 <h2 className="text-xl font-bold text-gray-900">
-                                    Мессенджеры
+                                    Чат-бот для срочных вопросов
                                 </h2>
                             </div>
                             <div className="text-sm text-gray-600 mb-4">
@@ -163,7 +163,7 @@ export function ContactsPage() {
                             </div>
                             <div className="flex gap-3">
                                 <a
-                                    href="https://t.me/fabrikazvezda"
+                                    href="https://t.me/fabrikazvezda_sale"
                                     className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center font-semibold"
                                 >
                                     Telegram
